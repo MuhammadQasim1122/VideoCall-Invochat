@@ -1,6 +1,6 @@
 import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { Typo } from '../components/Typo';
-import { CardButton } from '../components/buttons/CardButton';
+
 import React from 'react';
 import { View, StyleSheet, Image, Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';

@@ -142,11 +142,11 @@ export const Room = () => {
                               styles.shownParticipantBorder,
                             ]}
                           >
-                            <RoomParticipant
+                            {/* <RoomParticipant
                               participant={p}
                               onPinButtonPressed={setFocusedParticipantId}
                               tileSmall={participants.length > FLEX_BRAKPOINT}
-                            />
+                            /> */}
                           </View>
                         ))}
 

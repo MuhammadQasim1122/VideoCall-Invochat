@@ -2,14 +2,14 @@ import { BrandColors, TextColors } from '../shared/colors';
 import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { NoCameraView } from '../components/NoCameraView';
 import { Typo } from '../components/Typo';
-import { InCallButton } from '../components/buttons/InCallButton';
+
 import { StandardButton } from '../components/buttons/StandardButton';
 import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import { RootStack } from '../model/NavigationTypes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { findIndex } from 'lodash';
 import React, { useEffect, useCallback, useLayoutEffect, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoroomState } from '../VideoroomContext';
 
@@ -93,18 +93,28 @@ export const Preview = ({ navigation, route }: Props) => {
             )}
 
             <View style={styles.iconsRow}>
-              <InCallButton
-                iconName={isCameraOn ? 'Cam' : 'Cam-disabled'}
-                onPress={toggleCamera}
-              />
-
+      
+              {<TouchableOpacity onPress={toggleCamera}>
+              <Image
+                                                source={isCameraOn ? require("../../assets/images/camOpen.png") : require("../../assets/images/camClose.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
               <View style={styles.microphoneButton}>
-                <InCallButton
-                  iconName={isMicrophoneOn ? 'Microphone' : 'Microphone-off'}
-                  onPress={toggleMicrophone}
-                />
+               
+                 {<TouchableOpacity onPress={toggleMicrophone}>
+              <Image
+                                                source={isMicrophoneOn ? require("../../assets/images/micOpen.png") : require("../../assets/images/micClose.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
               </View>
-              <InCallButton iconName="Cam-switch" onPress={switchCamera} />
+              <TouchableOpacity onPress={switchCamera}>
+              <Image
+                                                source={require("../../assets/images/camSwtich.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>
             </View>
           </View>
 

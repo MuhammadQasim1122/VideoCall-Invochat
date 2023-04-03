@@ -1,10 +1,10 @@
-import { InCallButton } from '../components/buttons/InCallButton';
+
 import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import { RootStack } from '../model/NavigationTypes';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useVideoroomState } from '../VideoroomContext';
 
@@ -47,28 +47,35 @@ export const CallControls = () => {
       ]}
     >
       <View style={styles.iconInRow}>
-        <InCallButton
-          iconName={!isCameraOn ? 'Cam-disabled' : 'Cam'}
-          onPress={toggleCamera}
-        />
+      {<TouchableOpacity onPress={toggleCamera}>
+              <Image
+                                                source={isCameraOn ? require("../../assets/images/camOpen.png") : require("../../assets/images/camClose.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
       </View>
       <View style={styles.iconInRow}>
-        <InCallButton
-          iconName={!isMicrophoneOn ? 'Microphone-off' : 'Microphone'}
-          onPress={toggleMicrophone}
-        />
+      {<TouchableOpacity onPress={toggleMicrophone}>
+              <Image
+                                                source={isMicrophoneOn ? require("../../assets/images/micOpen.png") : require("../../assets/images/micClose.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
       </View>
       <View style={styles.iconInRow}>
-        <InCallButton
-          iconName={!isScreencastOn ? 'Screenshare' : 'Screen-off'}
-          onPress={toggleScreencastAndUpdateMetadata}
-        />
+        {<TouchableOpacity onPress={toggleScreencastAndUpdateMetadata}>
+              <Image
+                                                source={!isScreencastOn ? require("../../assets/images/camOpen.png") : require("../../assets/images/camClose.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
       </View>
-      <InCallButton
-        type="disconnect"
-        iconName="Hangup"
-        onPress={onDisconnectPress}
-      />
+      {<TouchableOpacity onPress={onDisconnectPress}>
+              <Image
+                                                source={require("../../assets/images/settings.png")}
+                                                style={{height:20, width:20}}
+                                            />
+              </TouchableOpacity>}
     </View>
   );
 };

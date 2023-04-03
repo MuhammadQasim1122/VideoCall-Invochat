@@ -18,7 +18,7 @@ import { PinButton } from './buttons/PinButton';
 
 type RoomParticipantProps = {
   participant: Membrane.Participant;
-  onPinButtonPressed?: (string) => void;
+  onPinButtonPressed?: (string:any) => void;
   focused?: boolean;
   pinButtonHiddden?: boolean;
   tileSmall?: boolean;
