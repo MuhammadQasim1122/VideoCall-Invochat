@@ -15,10 +15,10 @@ export const PinButton = ({ children, onPress }: PinButtonProp) => {
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.wrapper}>
         {/* <Icon name="Pin" size={24} color={AdditionalColors.white} /> */}
-        {/* <Image
-                                                source={require("../../assets/images/pin.png")}
+        <Image
+                                                source={require("../../../assets/images/pin.png")}
                                                 style={{tintColor:AdditionalColors.white,height:24, width:24}}
-                                            /> */}
+                                            />
         <View style={styles.buttonText}>
           <Typo variant="button" color={TextColors.white}>
             {children}

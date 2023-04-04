@@ -1,20 +1,13 @@
 import { BrandColors, AdditionalColors, TextColors } from '../shared/colors';
 import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import React, { useRef, useState } from 'react';
-import { View, StyleSheet, Pressable, Image } from 'react-native';
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  withSequence,
-  withDelay,
-  runOnJS,
-} from 'react-native-reanimated';
+import { View, StyleSheet, Pressable, Image, Animated } from 'react-native';
 
 
 import { NoCameraView } from './NoCameraView';
 import { Typo } from './Typo';
 import { PinButton } from './buttons/PinButton';
+
 
 type RoomParticipantProps = {
   participant: Membrane.Participant;
@@ -32,10 +25,8 @@ export const RoomParticipant = ({
   tileSmall = false,
 }: RoomParticipantProps) => {
   const [showPinButton, setShowPinButton] = useState(false);
-  const isPinButtonShown = useRef(false);
   const videoTrack = tracks.find((t) => t.type === 'Video');
   const audioTrack = tracks.find((t) => t.type === 'Audio');
-  const buttonOpacity = useSharedValue(0);
 
   const participantHasVideo = () => {
     if (videoTrack) {
@@ -56,34 +47,10 @@ export const RoomParticipant = ({
     onPinButtonPressed(id);
   };
 
-  const opacityStyle = useAnimatedStyle(() => {
-    return {
-      opacity: buttonOpacity.value,
-    };
-  });
 
-  const setIsPinButtonShown = (val: boolean) => {
-    isPinButtonShown.current = val;
-  };
 
   const triggerShowingPinButton = async () => {
-    if (pinButtonHiddden || isPinButtonShown.current) {
-      return;
-    }
-
-    isPinButtonShown.current = true;
-    setShowPinButton(true);
-
-    buttonOpacity.value = withSequence(
-      withTiming(1, { duration: 300 }),
-      withDelay(
-        1700,
-        withTiming(0, { duration: 300 }, () => {
-          runOnJS(setShowPinButton)(false);
-          runOnJS(setIsPinButtonShown)(false);
-        })
-      )
-    );
+    showPinButton ? setShowPinButton(true) : setShowPinButton(false);
   };
 
   return (
@@ -117,10 +84,10 @@ export const RoomParticipant = ({
 
         {focused ? (
           <View style={styles.displayPinContainer}>
-             {/* <Image
+             <Image
                                                 source={require("../../assets/images/pin.png")}
                                                 style={{tintColor:BrandColors.darkBlue100,height:20, width:20}}
-                                            /> */}
+                                            />
           </View>
         ) : null}
 
@@ -135,7 +102,7 @@ export const RoomParticipant = ({
         )}
       </Pressable>
       {showPinButton ? (
-        <Animated.View style={[styles.pinButton, opacityStyle]}>
+        <Animated.View style={[styles.pinButton, {opacity: 0}]}>
           <View style={styles.pinButtonWrapper}>
             <PinButton onPress={onPinButton}>{getTextForPinButton()}</PinButton>
           </View>
