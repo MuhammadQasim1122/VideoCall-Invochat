@@ -62,12 +62,9 @@ export const Preview = ({ navigation, route }: Props) => {
   }, [connectAndJoinRoom]);
 
   const switchCamera = useCallback(() => {
-    const cameras = availableCameras.current;
-    setCurrentCamera(
-      cameras[(findIndex(cameras, currentCamera) + 1) % cameras.length]
-    );
+    Membrane.flipCamera();
   }, []);
-
+  
   return (
     <BackgroundAnimation>
       <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>

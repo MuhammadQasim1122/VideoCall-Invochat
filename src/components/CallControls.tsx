@@ -38,6 +38,7 @@ export const CallControls = () => {
     await disconnect();
     navigation.navigate('LeaveRoom');
   }, [disconnect]);
+  console.log(isScreencastOn, 'screensharing');
 
   return (
     <View
@@ -72,7 +73,7 @@ export const CallControls = () => {
       </View>
       {<TouchableOpacity onPress={onDisconnectPress}>
               <Image
-                                                source={require("../../assets/images/settings.png")}
+                                                source={require("../../assets/images/call-end.png")}
                                                 style={{height:20, width:20}}
                                             />
               </TouchableOpacity>}
