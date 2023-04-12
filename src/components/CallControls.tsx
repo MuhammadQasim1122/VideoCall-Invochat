@@ -1,5 +1,3 @@
-
-import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import { RootStack } from '../model/NavigationTypes';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -11,26 +9,17 @@ import { useVideoroomState } from '../VideoroomContext';
 const BOTTOM_MARGIN = 34;
 
 export const CallControls = () => {
-  const { isScreencastOn, toggleScreencast } = Membrane.useScreencast();
   const {
     isCameraOn,
     toggleCamera,
     isMicrophoneOn,
     toggleMicrophone,
+    isScreencastOn,
+    toggleScreencastAndUpdateMetadata,
     disconnect,
   } = useVideoroomState();
   const bottomOffset = useSafeAreaInsets().bottom;
 
-  const toggleScreencastAndUpdateMetadata = () => {
-    toggleScreencast({
-      screencastMetadata: {
-        displayName: 'presenting',
-        type: 'screensharing',
-        active: 'true',
-      },
-      quality: Membrane.ScreencastQuality.FHD30,
-    });
-  };
 
   const navigation = useNavigation<StackNavigationProp<RootStack, 'Room'>>();
 
@@ -38,7 +27,6 @@ export const CallControls = () => {
     await disconnect();
     navigation.navigate('LeaveRoom');
   }, [disconnect]);
-  console.log(isScreencastOn, 'screensharing');
 
   return (
     <View
@@ -51,7 +39,7 @@ export const CallControls = () => {
       {<TouchableOpacity onPress={toggleCamera}>
               <Image
                                                 source={isCameraOn ? require("../../assets/images/camOpen.png") : require("../../assets/images/camClose.png")}
-                                                style={{height:20, width:20}}
+                                                style={{height:30, width:30}}
                                             />
               </TouchableOpacity>}
       </View>
@@ -59,22 +47,22 @@ export const CallControls = () => {
       {<TouchableOpacity onPress={toggleMicrophone}>
               <Image
                                                 source={isMicrophoneOn ? require("../../assets/images/micOpen.png") : require("../../assets/images/micClose.png")}
-                                                style={{height:20, width:20}}
+                                                style={{height:30, width:30}}
                                             />
               </TouchableOpacity>}
       </View>
       <View style={styles.iconInRow}>
         {<TouchableOpacity onPress={toggleScreencastAndUpdateMetadata}>
               <Image
-                                                source={!isScreencastOn ? require("../../assets/images/camOpen.png") : require("../../assets/images/camClose.png")}
-                                                style={{height:20, width:20}}
+                                                source={!isScreencastOn ? require("../../assets/images/screenshare.png") : require("../../assets/images/cancelScreenShare.png")}
+                                                style={{height:30, width:30}}
                                             />
               </TouchableOpacity>}
       </View>
       {<TouchableOpacity onPress={onDisconnectPress}>
               <Image
                                                 source={require("../../assets/images/call-end.png")}
-                                                style={{height:20, width:20}}
+                                                style={{height:30, width:30}}
                                             />
               </TouchableOpacity>}
     </View>

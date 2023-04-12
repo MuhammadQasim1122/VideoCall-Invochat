@@ -1,4 +1,4 @@
-const VIDEOROOM_URL = 'https://videoroom.membrane.work/room/';
+const VIDEOROOM_URL = 'https://videoroom.invo.zone/room/';
 import { isEmpty } from 'lodash';
 
 /**

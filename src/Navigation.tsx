@@ -11,7 +11,7 @@ import { Room } from './screens/Room';
 import React from 'react';
 
 import { useVideoroomState } from './VideoroomContext';
-const VIDEOROOM_URL = 'https://videoroom.membrane.work/room/'
+const VIDEOROOM_URL = 'https://videoroom.invo.zone/room/'
 const linking = {
   prefixes: [VIDEOROOM_URL],
   config: {

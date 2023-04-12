@@ -8,6 +8,8 @@ import {
   useAudioTrackMetadata,
   useCameraState,
   useMicrophoneState,
+  useScreencast,
+  ScreencastQuality,
 } from '@jellyfish-dev/react-native-membrane-webrtc';
 import React, { useState, useCallback, useEffect } from 'react';
 import { Alert } from 'react-native';
@@ -24,6 +26,8 @@ const VideoroomContext = React.createContext<
       toggleCamera: () => void;
       isMicrophoneOn: boolean;
       toggleMicrophone: () => void;
+      isScreencastOn: boolean;
+      toggleScreencastAndUpdateMetadata: () => void;
       currentCamera: CaptureDevice | null;
       setCurrentCamera: (camera: CaptureDevice | null) => void;
       connectAndJoinRoom: () => Promise<void>;
@@ -35,7 +39,7 @@ const VideoroomContext = React.createContext<
 >(undefined);
 
 const VideoroomContextProvider = (props:any) => {
-  const SERVER_URL = 'https://videoroom.membrane.work/socket';
+  const SERVER_URL = 'https://videoroom.invo.zone/socket';
   const [roomName, setRoomName] = useState('');
   const [username, setUsername] = useState('');
   const [isCameraOn, setIsCameraOn] = useState(true);
@@ -45,6 +49,8 @@ const VideoroomContextProvider = (props:any) => {
   );
   const { toggleCamera: membraneToggleCamera } = useCameraState();
   const { toggleMicrophone: membraneToggleMicrophone } = useMicrophoneState();
+  const { isScreencastOn, toggleScreencast: membraneToggleScreencast } =
+    useScreencast();
 
   const {
     connect,
@@ -122,6 +128,17 @@ const VideoroomContextProvider = (props:any) => {
     setIsMicrophoneOn(!isMicrophoneOn);
   }, [isMicrophoneOn, videoroomState]);
 
+  const toggleScreencastAndUpdateMetadata = useCallback(() => {
+    membraneToggleScreencast({
+      screencastMetadata: {
+        displayName: 'presenting',
+        type: 'screensharing',
+        active: 'true',
+      },
+      quality: ScreencastQuality.HD15,
+    });
+  }, []);
+
   const value = {
     roomName,
     setRoomName,
@@ -132,6 +149,8 @@ const VideoroomContextProvider = (props:any) => {
     toggleCamera,
     isMicrophoneOn,
     toggleMicrophone,
+    isScreencastOn,
+    toggleScreencastAndUpdateMetadata,
     currentCamera,
     setCurrentCamera,
     disconnect,

@@ -62,7 +62,10 @@ export const Preview = ({ navigation, route }: Props) => {
   }, [connectAndJoinRoom]);
 
   const switchCamera = useCallback(() => {
-    Membrane.flipCamera();
+    const cameras = availableCameras.current;
+    setCurrentCamera(
+      cameras[(findIndex(cameras, currentCamera) + 1) % cameras.length]
+    );
   }, []);
   
   return (
