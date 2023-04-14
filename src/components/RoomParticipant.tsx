@@ -135,7 +135,7 @@ export const RoomParticipant = ({
         {focused ? (
           <View style={styles.displayPinContainer}>
            <Image
-                                                source={require("../../assets/images/pin.png")}
+                                                source={require("./../../assets/images/pin.png")}
                                                 style={{tintColor:BrandColors.darkBlue100,height:20, width:20}}
                                             />
           </View>
@@ -144,7 +144,7 @@ export const RoomParticipant = ({
         {videoTrackType !== 'screensharing' && !audioTrack?.metadata.active && (
           <View style={styles.mutedIcon}>
             <Image
-                                                source={require("../../assets/images/micClose.png")}
+                                                source={require("./../../assets/images/micClose.png")}
                                                 style={{tintColor:BrandColors.darkBlue100,height:16, width:16}}
                                             />
           </View>

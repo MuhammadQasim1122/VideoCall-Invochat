@@ -1,16 +1,11 @@
-// import { VIDEOROOM_URL } from '@env';
 import { RootStack } from './model/NavigationTypes';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { CreateRoom } from './screens/CreateRoom';
-import { InitialScreen } from './screens/InitialScreen';
-import { JoinRoom } from './screens/JoinRoom';
-import { LeaveRoomScreen } from './screens/LeaveRoomScreen';
-import { Preview } from './screens/Preview';
-import { Room } from './screens/Room';
 import React from 'react';
 
 import { useVideoroomState } from './VideoroomContext';
+import { VideoCall } from '@screens/VideoCall';
+import { StartCall } from './screens';
 const VIDEOROOM_URL = 'https://videoroom.invo.zone/room/'
 const linking = {
   prefixes: [VIDEOROOM_URL],
@@ -26,22 +21,15 @@ const linking = {
   },
 };
 
-const navTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: 'transparent',
-  },
-};
 
 const Stack = createStackNavigator<RootStack>();
 
 export const Navigation = () => {
   const { videoroomState } = useVideoroomState();
   return (
-    <NavigationContainer linking={linking} theme={navTheme}>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
-        initialRouteName="InitialScreen"
+        initialRouteName="StartCall"
         screenOptions={{
           headerBackTitle: 'Back',
           headerMode: 'float',
@@ -50,18 +38,11 @@ export const Navigation = () => {
           cardStyle: { backgroundColor: 'transparent' },
         }}
       >
-        {videoroomState === 'InMeeting' || videoroomState === 'AfterMeeting' ? (
+        {videoroomState === 'InMeeting' ? (
           <>
             <Stack.Screen
-              name="Room"
-              component={Room}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="LeaveRoom"
-              component={LeaveRoomScreen}
+              name="VideoCall"
+              component={VideoCall}
               options={{
                 headerShown: false,
               }}
@@ -70,27 +51,13 @@ export const Navigation = () => {
         ) : (
           <>
             <Stack.Screen
-              name="InitialScreen"
-              component={InitialScreen}
+              name="StartCall"
+              component={StartCall}
               options={{
                 headerShown: false,
               }}
             />
-            <Stack.Screen
-              name="CreateRoom"
-              component={CreateRoom}
-              options={{
-                title: 'New meeting',
-              }}
-            />
-            <Stack.Screen
-              name="JoinRoom"
-              component={JoinRoom}
-              options={{
-                title: 'Join meeting',
-              }}
-            />
-            <Stack.Screen name="Preview" component={Preview} />
+            
           </>
         )}
       </Stack.Navigator>

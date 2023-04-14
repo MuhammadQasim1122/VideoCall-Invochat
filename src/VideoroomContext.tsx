@@ -1,4 +1,8 @@
 
+// import { useServerUrl } from '@app/context/server';
+// import { getCurrentUserId } from '@app/queries/servers/system';
+// import { observeCurrentUser } from '@app/queries/servers/user';
+// import DatabaseManager from '@database/manager';
 import {
   useMembraneServer,
   useAudioSettings,
@@ -13,6 +17,8 @@ import {
 } from '@jellyfish-dev/react-native-membrane-webrtc';
 import React, { useState, useCallback, useEffect } from 'react';
 import { Alert } from 'react-native';
+// import {of as of$} from 'rxjs';
+// import {switchMap} from 'rxjs/operators';
 
 type VideoroomState = 'BeforeMeeting' | 'InMeeting' | 'AfterMeeting';
 
@@ -33,15 +39,16 @@ const VideoroomContext = React.createContext<
       connectAndJoinRoom: () => Promise<void>;
       disconnect: () => Promise<void>;
       videoroomState: VideoroomState;
-      goToMainScreen: () => void;
     }
   | undefined
 >(undefined);
 
 const VideoroomContextProvider = (props:any) => {
+  // const serverUrl = useServerUrl();
+  // const {database} = DatabaseManager.getServerDatabaseAndOperator(serverUrl);
   const SERVER_URL = 'https://videoroom.invo.zone/socket';
-  const [roomName, setRoomName] = useState('');
-  const [username, setUsername] = useState('');
+  const [roomName, setRoomName] = useState('asdf');
+  const [username, setUsername] = useState('Test');
   const [isCameraOn, setIsCameraOn] = useState(true);
   const [isMicrophoneOn, setIsMicrophoneOn] = useState(true);
   const [currentCamera, setCurrentCamera] = useState<CaptureDevice | null>(
@@ -66,15 +73,16 @@ const VideoroomContextProvider = (props:any) => {
   const [videoroomState, setVideoroomState] =
     useState<VideoroomState>('BeforeMeeting');
 
+  // const getCurrentUserName = () => {
+  //   const currentUser = observeCurrentUser(database);
+  //   return currentUser.pipe((switchMap((user) => of$(user?.username))))
+  // }
   const connectAndJoinRoom = useCallback(async () => {
-    const trimmedRoomName = roomName.trimEnd();
-    const trimmedUserName = username.trimEnd();
-
-    setRoomName(trimmedRoomName);
-    setUsername(trimmedUserName);
-
-    await connect(SERVER_URL, trimmedRoomName, {
-      userMetadata: { displayName: trimmedUserName },
+    const userId = 'Muhammad Qasim';
+    // const roomId = await getCurrentUserId(database);
+    
+    await connect(SERVER_URL, roomName, {
+      userMetadata: { displayName: username },
       socketChannelParams: {
         isSimulcastOn: true,
       },
@@ -97,12 +105,6 @@ const VideoroomContextProvider = (props:any) => {
   const disconnect = useCallback(async () => {
     await membraneDisconnect();
     setVideoroomState('AfterMeeting');
-  }, []);
-
-  const goToMainScreen = useCallback(() => {
-    setRoomName('');
-    setUsername('');
-    setVideoroomState('BeforeMeeting');
   }, []);
 
   useEffect(() => {
@@ -155,7 +157,6 @@ const VideoroomContextProvider = (props:any) => {
     setCurrentCamera,
     disconnect,
     videoroomState,
-    goToMainScreen,
   };
 
   return (

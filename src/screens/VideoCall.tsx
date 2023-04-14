@@ -19,7 +19,7 @@ import { useVideoroomState } from '../VideoroomContext';
 import { CallControls } from '../components/CallControls';
 
 
-export const Room = () => {
+export const VideoCall = () => {
   
   const { roomName } = useVideoroomState();
 
@@ -124,7 +124,7 @@ export const Room = () => {
           <View style={styles.headerIcon}>
             <TouchableOpacity onPress={switchCamera}>
             <Image
-                                                source={require("../../assets/images/camSwtich.png")}
+                                                source={require("./../../assets/images/camSwtich.png")}
                                                 style={{height:20, width:20, tintColor: BrandColors.darkBlue100}}
               />
             </TouchableOpacity>

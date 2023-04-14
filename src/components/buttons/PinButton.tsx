@@ -15,7 +15,7 @@ export const PinButton = ({ children, onPress }: PinButtonProp) => {
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.wrapper}>
         {/* <Icon name="Pin" size={24} color={AdditionalColors.white} /> */}
-        <Image
+        <Image  
                                                 source={require("../../../assets/images/pin.png")}
                                                 style={{tintColor:AdditionalColors.white,height:24, width:24}}
                                             />

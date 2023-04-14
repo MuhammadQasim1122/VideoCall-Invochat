@@ -1,5 +1,5 @@
 import { BrandColors } from '../shared/colors';
-import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
+import type * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import { getShortUsername } from '../shared/utils';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';

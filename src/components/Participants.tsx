@@ -2,7 +2,7 @@ import { AdditionalColors, BrandColors } from '../shared/colors';
 import React from 'react';
 import { Dimensions, View, StyleSheet } from 'react-native';
 
-import { Participant } from './NotFocusedParticipants';
+import type { Participant } from './NotFocusedParticipants';
 import { OtherParticipants } from './OtherParticipants';
 import { RoomParticipant } from './RoomParticipant';
 
