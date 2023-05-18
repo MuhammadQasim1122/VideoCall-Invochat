@@ -1,5 +1,5 @@
 import { BrandColors } from '../shared/colors';
-import * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
+import type * as Membrane from '@jellyfish-dev/react-native-membrane-webrtc';
 import { getShortUsername } from '../shared/utils';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
     borderRadius: 5000,
     borderColor: BrandColors.darkBlue60,
     borderWidth: 1,
-    width: 75,
-    height: 75,
+    width: 70,
+    height: 70,
   },
   textRow: {
     marginTop: 8,

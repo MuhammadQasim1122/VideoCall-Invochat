@@ -1,10 +1,10 @@
 import 'react-native-gesture-handler';
-import { BackgroundWrapper } from './components/BackgroundWrapper';
+import { BackgroundWrapper } from './components/videocalls/components/BackgroundWrapper';
 
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 
-import { Navigation } from './Navigation';
+import { Navigation } from './screens/video_call/Navigation';
 import { VideoroomContextProvider } from './VideoroomContext';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         backgroundColor="transparent"
       />
       <VideoroomContextProvider>
-        <Navigation />
+        <Navigation userName={'Qasim'} channel={undefined} channelId={''} />
       </VideoroomContextProvider>
     </BackgroundWrapper>
   );

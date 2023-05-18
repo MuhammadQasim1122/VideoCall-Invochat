@@ -1,5 +1,5 @@
 import { AdditionalColors, BrandColors, TextColors } from '../shared/colors';
-import { TextInputTextStyle, Typo } from '../components/Typo';
+import { TextInputTextStyle, Typo } from './Typo';
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput as RNTextInput } from 'react-native';
