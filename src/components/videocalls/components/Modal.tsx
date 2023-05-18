@@ -1,5 +1,5 @@
 import { AdditionalColors } from '../shared/colors';
-import { Typo } from '../components/Typo';
+import { Typo } from './Typo';
 import React, { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ReactNativeModal } from 'react-native-modal';
