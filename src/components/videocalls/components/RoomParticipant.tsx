@@ -2,14 +2,14 @@ import { BrandColors, AdditionalColors, TextColors } from "../shared/colors";
 import * as Membrane from "@jellyfish-dev/react-native-membrane-webrtc";
 import React, { useRef, useState } from "react";
 import { View, StyleSheet, Pressable, Image } from "react-native";
-import Animated, {
-    useSharedValue,
-    withTiming,
-    useAnimatedStyle,
-    withSequence,
-    withDelay,
-    runOnJS,
-} from "react-native-reanimated";
+// import Animated, {
+//     useSharedValue,
+//     withTiming,
+//     useAnimatedStyle,
+//     withSequence,
+//     withDelay,
+//     runOnJS,
+// } from "react-native-reanimated";
 
 import { NoCameraView } from "./NoCameraView";
 import { Typo } from "./Typo";
@@ -41,7 +41,7 @@ type RoomParticipantProps = {
     const videoTrack = trackId ? tracks.find((t) => t.id === trackId) : null;
     const videoTrackType = videoTrack?.metadata.type;
     const audioTrack = tracks.find((t) => t.type === 'Audio');
-    const buttonOpacity = useSharedValue(0);
+    // const buttonOpacity = useSharedValue(0);
   
     const participantHasVideo = () => {
       if (videoTrack) {
@@ -62,35 +62,35 @@ type RoomParticipantProps = {
       onPinButtonPressed({ participant, trackId });
     };
   
-    const opacityStyle = useAnimatedStyle(() => {
-      return {
-        opacity: buttonOpacity.value,
-      };
-    });
+    // const opacityStyle = useAnimatedStyle(() => {
+    //   return {
+    //     opacity: buttonOpacity.value,
+    //   };
+    // });
   
     const setIsPinButtonShown = (val: boolean) => {
       isPinButtonShown.current = val;
     };
   
-    const triggerShowingPinButton = async () => {
-      if (pinButtonHiddden || isPinButtonShown.current) {
-        return;
-      }
+    // const triggerShowingPinButton = async () => {
+    //   if (pinButtonHiddden || isPinButtonShown.current) {
+    //     return;
+    //   }
   
-      isPinButtonShown.current = true;
-      setShowPinButton(true);
+    //   isPinButtonShown.current = true;
+    //   setShowPinButton(true);
   
-      buttonOpacity.value = withSequence(
-        withTiming(1, { duration: 300 }),
-        withDelay(
-          1700,
-          withTiming(0, { duration: 300 }, () => {
-            runOnJS(setShowPinButton)(false);
-            runOnJS(setIsPinButtonShown)(false);
-          })
-        )
-      );
-    };
+    //   buttonOpacity.value = withSequence(
+    //     withTiming(1, { duration: 300 }),
+    //     withDelay(
+    //       1700,
+    //       withTiming(0, { duration: 300 }, () => {
+    //         runOnJS(setShowPinButton)(false);
+    //         runOnJS(setIsPinButtonShown)(false);
+    //       })
+    //     )
+    //   );
+    // };
   
     const getStyleForVideoView = () => {
       return videoTrackType === 'camera'
@@ -104,7 +104,7 @@ type RoomParticipantProps = {
   
     return (
       <View style={styles.fill}>
-        <Pressable onPress={triggerShowingPinButton} style={styles.fill}>
+        <Pressable style={styles.fill}>
           {participantHasVideo() ? (
             <Membrane.VideoRendererView
               trackId={videoTrack!.id}
@@ -139,7 +139,7 @@ type RoomParticipantProps = {
           {focused ? (
             <View style={styles.displayPinContainer}>
              <Image
-                            source={require("@assets/images/pin.png")}
+                            source={require("../../../../assets/images/pin.png")}
                             style={{
                                 tintColor: BrandColors.darkBlue100,
                                 height: 20,
@@ -152,7 +152,7 @@ type RoomParticipantProps = {
           {videoTrackType !== 'screensharing' && !audioTrack?.metadata.active && (
             <View style={styles.mutedIcon}>
                <Image
-                                source={require("@assets/images/micClose.png")}
+                                source={require("../../../../assets/images/micClose.png")}
                                 style={{
                                     tintColor: BrandColors.darkBlue100,
                                     height: 16,
@@ -169,7 +169,7 @@ type RoomParticipantProps = {
           </View>
         ) : null} */}
   
-        {showPinButton ? (
+        {/* {showPinButton ? (
           <Animated.View style={[styles.pinButton, opacityStyle]}>
             <View style={styles.pinButtonWrapper}>
             <PinButton onPress={onPinButton} focused={focused}>
@@ -177,7 +177,7 @@ type RoomParticipantProps = {
                         </PinButton>
             </View>
           </Animated.View>
-        ) : null}
+        ) : null} */}
       </View>
     );
   };

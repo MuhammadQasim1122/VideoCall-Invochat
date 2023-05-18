@@ -30,7 +30,7 @@ export const JoinRoom = (props:Props) => {
           setCurrentCamera(devices.find((device) => device.isFrontFacing) || null);
         });
       }, []);
-    const { showNotification } = useNotifications();
+    // const { showNotification } = useNotifications();
    
     const openPreview = () => {
         console.log("openPreview");
@@ -45,13 +45,14 @@ export const JoinRoom = (props:Props) => {
           await connectAndJoinRoom();
           props.navigation.navigate("Room", {id: props.route.params.id});
         } catch (err) {
-          showNotification('Error connecting to server', 'error');
+          // showNotification('Error connecting to server', 'error');
+          console.warn('Error connecting to server', err)
         }
       }, [connectAndJoinRoom]);
 
     return (
         <BackgroundAnimation>
-            <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
+            <SafeAreaView style={{ flex: 1, marginTop:80}} edges={["bottom"]}>
                 <Button
                     onPress={() => {
                         handlePermissions(openPreview);

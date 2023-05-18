@@ -27,8 +27,8 @@ export const ParticipantsStatusTile = ({ participant }: Participant) => {
                 <Image
                     source={
                         audioTrack?.metadata.active
-                            ? require("@assets/images/micOpen.png")
-                            : require("@assets/images/micClose.png")
+                            ? require("../../../../assets/images/micOpen.png")
+                            : require("../../../../assets/images/micClose.png")
                     }
                     style={
                         audioTrack?.metadata.active

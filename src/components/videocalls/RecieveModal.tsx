@@ -29,14 +29,14 @@ export const RecieveModal = ({
         >
             <Typo variant="h4">{senderName} is calling you</Typo>
 
-            <Image
+            {/* <Image
                 source={require("@assets/images/serverLogo.png")}
                 style={{
                     marginVertical: 30,
                     width: 75,
                     height: 75,
                 }}
-            />
+            /> */}
             <View
                 style={{
                     flexDirection: "row",

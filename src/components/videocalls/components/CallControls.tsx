@@ -46,8 +46,8 @@ export const CallControls = ({ componentId }: callControlsProps) => {
                         <Image
                             source={
                                 isCameraOn
-                                    ? require("@assets/images/camOpen.png")
-                                    : require("@assets/images/camClose.png")
+                                    ? require("../../../../assets/images/camOpen.png")
+                                    : require("../../../../assets/images/camClose.png")
                             }
                             style={{ height: 30, width: 30 }}
                         />
@@ -60,8 +60,8 @@ export const CallControls = ({ componentId }: callControlsProps) => {
                         <Image
                             source={
                                 isMicrophoneOn
-                                    ? require("@assets/images/micOpen.png")
-                                    : require("@assets/images/micClose.png")
+                                    ? require("../../../../assets/images/micOpen.png")
+                                    : require("../../../../assets/images/micClose.png")
                             }
                             style={{ height: 30, width: 30 }}
                         />
@@ -76,8 +76,8 @@ export const CallControls = ({ componentId }: callControlsProps) => {
                         <Image
                             source={
                                 !isScreencastOn
-                                    ? require("@assets/images/screenshare.png")
-                                    : require("@assets/images/cancelScreenShare.png")
+                                    ? require("../../../../assets/images/screenshare.png")
+                                    : require("../../../../assets/images/cancelScreenShare.png")
                             }
                             style={{ height: 30, width: 30 }}
                         />
@@ -87,7 +87,7 @@ export const CallControls = ({ componentId }: callControlsProps) => {
             {
                 <TouchableOpacity onPress={onDisconnectPress}>
                     <Image
-                        source={require("@assets/images/call-end.png")}
+                        source={require("../../../../assets/images/call-end.png")}
                         style={{ height: 30, width: 30 }}
                     />
                 </TouchableOpacity>

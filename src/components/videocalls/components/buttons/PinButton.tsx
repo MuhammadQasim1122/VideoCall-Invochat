@@ -23,8 +23,8 @@ export const PinButton = ({
                 <Image
                     source={
                         focused
-                            ? require("../../../../../assets/base/images/unpin.png")
-                            : require("../../../../../assets/base/images/pin.png")
+                            ? require("../../../../../assets/images/unpin.png")
+                            : require("../../../../../assets/images/pin.png")
                     }
                     style={{
                         tintColor: AdditionalColors.white,

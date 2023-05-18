@@ -131,7 +131,7 @@ const VideoCallHeader = (props: any) => {
                     </View>
                 </View>
                 <TouchableOpacity onPress={onParticpantsPressed}>
-                    <Image
+                    {/* <Image
                         source={require("@assets/images/participants.png")}
                         resizeMode="contain"
                         style={{
@@ -139,7 +139,7 @@ const VideoCallHeader = (props: any) => {
                             width: 20,
                             tintColor: theme.sidebarHeaderTextColor1,
                         }}
-                    />
+                    /> */}
                 </TouchableOpacity>
             </View>
         </>

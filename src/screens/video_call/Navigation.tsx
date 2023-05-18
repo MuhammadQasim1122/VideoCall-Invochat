@@ -3,7 +3,7 @@ import type { RootStack } from "../../components/videocalls/model/NavigationType
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Room } from "@screens/video_call/room/Room";
+import { Room } from "../../screens/video_call/room/Room";
 import React, { useEffect, useState } from "react";
 
 import { useVideoroomState } from "../../components/videocalls/VideoroomContext";
@@ -14,7 +14,7 @@ const VIDEOROOM_URL = 'https://videoroom.membrane.work/room/'
 const linking = {
     prefixes: [VIDEOROOM_URL],
     config: {
-      initialRouteName: 'InitialScreen' as const,
+      initialRouteName: 'JoinRoom' as const,
       screens: {
         InitialScreen: {},
         JoinRoom: {

@@ -95,6 +95,7 @@ const VideoroomContextProvider = (props: any) => {
         });
         console.log('conneection Established======');
         await joinRoom();
+        console.log('joinedRoom');
         setVideoroomState("InMeeting");
     }
         catch(e){
@@ -109,11 +110,11 @@ const VideoroomContextProvider = (props: any) => {
         setVideoroomState("Normal");
     }, []);
 
-    const { showNotification } = useNotifications();
+    // const { showNotification } = useNotifications();
 
     useEffect(() => {
         if (error) {
-            showNotification("Error connecting to server", "error");
+            console.warn("Error connecting to server", "error");
         }
     }, [error]);
 
